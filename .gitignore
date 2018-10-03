@@ -1,0 +1,8 @@
+.settings/
+o2o.iml
+target/
+.classpath
+.project
+catalina.base_IS_UNDEFINED/
+.idea/
+
