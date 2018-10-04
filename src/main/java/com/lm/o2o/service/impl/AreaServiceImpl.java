@@ -8,10 +8,19 @@ import org.springframework.stereotype.Service;
 import com.lm.o2o.dao.AreaDao;
 import com.lm.o2o.entity.Area;
 import com.lm.o2o.service.AreaService;
+/**
+ * 区域服务serviceImpl
+ * @author LuoMan
+ */
 @Service
 public class AreaServiceImpl implements AreaService{
+	private final AreaDao areaDao;
+
 	@Autowired
-	private AreaDao areaDao;
+	public AreaServiceImpl(AreaDao areaDao) {
+		this.areaDao = areaDao;
+	}
+
 	@Override
 	public List<Area> getAreaList() {
 		return areaDao.queryArea();
