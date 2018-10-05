@@ -1,12 +1,10 @@
 package com.lm.o2o.dao;
 
 import com.lm.o2o.entity.Shop;
-import org.springframework.stereotype.Component;
 
 /**
  * @author LuoMan
  */
-@Component
 public interface ShopDao {
     /**
      * 用于插入商铺数据

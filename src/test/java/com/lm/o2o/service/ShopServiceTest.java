@@ -20,7 +20,7 @@ public class ShopServiceTest extends BaseTest {
     private ShopService shopService;
 
     @Test
-    public void testAddShop() {
+    public void testAddShop() throws FileNotFoundException {
         Shop shop = new Shop();
         PersonInfo owner = new PersonInfo();
         owner.setUserId(8L);
@@ -31,15 +31,17 @@ public class ShopServiceTest extends BaseTest {
         shop.setOwner(owner);
         shop.setArea(area);
         shop.setShopCategory(shopCategory);
-        shop.setShopName("测试的店铺1");
-        shop.setShopDesc("test1");
-        shop.setShopAddr("test1");
-        shop.setPhone("test1");
+        shop.setShopName("测试的店铺3");
+        shop.setShopDesc("test3");
+        shop.setShopAddr("test3");
+        shop.setPhone("test3");
         shop.setCreateTime(new Date());
         shop.setEnableStatus(ShopStateEnum.CHECK.getState());
         shop.setAdvice("审核中");
-        File shopImg = new File("3.png");
-//        ShopExecution se = shopService.addShop(shop);
-//        assertEquals(ShopStateEnum.CHECK.getState(), se.getState());
+        File shopImg = new File("E:/3.png");
+        System.out.println(shopImg.getPath());
+        InputStream is = new FileInputStream(shopImg);
+        ShopExecution se = shopService.addShop(shop, is, shopImg.getName());
+        assertEquals(ShopStateEnum.CHECK.getState(), se.getState());
     }
 }
