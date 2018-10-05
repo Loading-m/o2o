@@ -4,6 +4,7 @@ import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
@@ -21,17 +22,18 @@ public class ImageUtil {
     private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyyMMddHHmmss");
     private static final Random RANDOM = new Random();
 
-    public static void generateThumbnail(CommonsMultipartFile thumbnail, String TargetAddr) {
+    public static String generateThumbnail(CommonsMultipartFile thumbnail, String targetAddr) {
         String realFileName = getRandomFileName();
         String extension = getFileExtension(thumbnail);
-        makeDirPath(TargetAddr);
-        String relativeAddr = TargetAddr + realFileName + extension;
+        makeDirPath(targetAddr);
+        String relativeAddr = targetAddr + realFileName + extension;
         File dest = new File(PathUtil.getImgBasePath() + relativeAddr);
         try {
             Thumbnails.of(thumbnail.getInputStream()).size(200, 200).watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(new File(basePath) + "/watermark.png")), 0.25f).outputQuality(0.8f).toFile(dest);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return relativeAddr;
     }
 
     /**

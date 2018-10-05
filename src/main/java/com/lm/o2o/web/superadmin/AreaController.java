@@ -18,27 +18,27 @@ import java.util.Map;
 @Controller
 @RequestMapping("/superAdmin")
 public class AreaController {
-	private final AreaService areaService;
+    private final AreaService areaService;
 
-	@Autowired
-	public AreaController(AreaService areaService) {
-		this.areaService = areaService;
-	}
+    @Autowired
+    public AreaController(AreaService areaService) {
+        this.areaService = areaService;
+    }
 
-	@RequestMapping(value = "/listArea", method = RequestMethod.GET)
-	@ResponseBody
-	private Map<String, Object> listArea() {
-		Map<String, Object> modelMap = new HashMap<String, Object>(16);
-		List<Area> list;
-		try {
-			list = areaService.getAreaList();
-			modelMap.put("rows", list);
-			modelMap.put("total", list.size());
-		} catch (Exception e) {
-			e.printStackTrace();
-			modelMap.put("success", false);
-			modelMap.put("errMsg", e.toString());
-		}
-		return modelMap;
-	}
+    @RequestMapping(value = "/listArea", method = RequestMethod.GET)
+    @ResponseBody
+    private Map<String, Object> listArea() {
+        Map<String, Object> modelMap = new HashMap<String, Object>(16);
+        List<Area> list;
+        try {
+            list = areaService.getAreaList();
+            modelMap.put("rows", list);
+            modelMap.put("total", list.size());
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelMap.put("success", false);
+            modelMap.put("errMsg", e.toString());
+        }
+        return modelMap;
+    }
 }
